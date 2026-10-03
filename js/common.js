@@ -27,7 +27,7 @@
     { slug: "xr",          num: "17", title: "AR/VR 근안 디스플레이",       desc: "마이크로OLED, 팬케이크 렌즈, 도파관, PPD와 시야각, 수렴–조절 불일치.", tags: ["응용", "3d", "sim"] },
     { slug: "measurement", num: "18", title: "측정과 화질 평가",           desc: "휘도·색도 측정, 균일도와 무라, 감마 측정, 캘리브레이션과 화질 지표.", tags: ["측정", "sim"] },
     { slug: "design",      num: "19", title: "디스플레이 설계 플레이그라운드", desc: "크기·해상도·주사율·기술을 정하고 소비전력, 대역폭, 화질을 한눈에 비교해 보자.", tags: ["종합", "sim"] },
-    { slug: "glossary",    num: "20", title: "용어집 & 종합 퀴즈",          desc: "핵심 용어 200여 개를 검색하고, 실력을 점검하자.", tags: ["정리"] },
+    { slug: "glossary",    num: "20", title: "용어집 & 종합 퀴즈",          desc: "핵심 용어 300여 개를 검색하고, 실력을 점검하자.", tags: ["정리"] },
   ];
 
   const DB = (window.DB = {});

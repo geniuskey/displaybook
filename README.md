@@ -1,7 +1,7 @@
 # DisplayBook — 인터랙티브 디스플레이 교과서
 
 전자에서 빛나는 화면까지. 공대 학부생을 위한 한국어 디스플레이 학습 사이트입니다.
-[SensorBook](https://sensorbook.euiyun.com/)(이미지 센서 교과서)의 시리즈물로, 20개 챕터와 120여 개의 시뮬레이터, 3D 구조 모델(three.js)로 구성됩니다.
+[SensorBook](https://sensorbook.euiyun.com/)(이미지 센서 교과서)의 시리즈물로, 20개 챕터와 170여 개의 시뮬레이터, 180여 개의 SVG 도해, 3D 구조 모델(three.js)로 구성됩니다.
 
 ## 실행
 빌드 과정이 없는 정적 사이트입니다.
