@@ -1,0 +1,4 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>t</title><link rel="stylesheet" href="../css/style.css"><script src="../js/common.js"></script></head>
+<body data-chapter="color"><main class="chapter"><section id="a"><h2>x</h2><div class="sim"><div class="sim-view"><canvas id="c"></canvas></div></div><div class="sim"><div class="sim-view"><canvas id="d"></canvas></div></div></section></main>
+<script>DB.canvas(document.getElementById('c'),(ctx,w,h)=>{DB.cie(ctx,null,{gamuts:[{prims:DB.GAMUTS.bt2020}],planck:true});},{aspect:0.9});
+DB.canvas(document.getElementById('d'),(ctx,w,h)=>{DB.cie(ctx,null,{space:'uv',gamuts:[{prims:DB.GAMUTS.bt2020}]});},{aspect:0.9});</script></body></html>
