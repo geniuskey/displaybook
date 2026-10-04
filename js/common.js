@@ -673,6 +673,7 @@
       <button class="db-btn icon" id="db-menu" aria-label="챕터 목록">${ICON_MENU}</button>
       <a class="db-logo" href="${href("")}">${LOGO}<span>DisplayBook <small>디스플레이 교과서</small></span></a>
       <span class="spacer"></span>
+      <a class="db-btn series-link" href="https://books.euiyun.com/" aria-label="전체 책 보기" title="전체 책 보기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h6v14H4zM10 5.5h6v14h-6zM17 7l3-1 2 13-3 1z"/></svg><span>전체 책</span></a>
       <button class="db-btn icon" id="db-theme" aria-label="테마 전환"></button>
       <div class="db-progress" id="db-progress"></div>`;
     body.prepend(bar);
