@@ -755,6 +755,10 @@
       코드 <a href="https://github.com/geniuskey/displaybook/blob/main/LICENSE-MIT">MIT</a> ·
       <a href="https://github.com/geniuskey/displaybook/blob/main/LICENSE.md">라이선스 안내</a>
       <br>시리즈 · <a href="https://sensorbook.euiyun.com/">SensorBook 이미지 센서 교과서</a>`;
+    const feedbackLink = document.createElement("a");
+    feedbackLink.href = "https://books.euiyun.com/feedback.html?book=displaybook&page=" + encodeURIComponent(location.href);
+    feedbackLink.textContent = "오류·질문·제안";
+    foot.append(" · ", feedbackLink);
     body.appendChild(foot);
 
     // quiz
