@@ -536,7 +536,7 @@
     <div class="formula">$$ \text{Percent Flicker} = \frac{L_{max} - L_{min}}{L_{max} + L_{min}} \times 100\%, \qquad \text{Flicker Index} = \frac{\int_{L > \bar L} (L - \bar L)\,dt}{\int_0^{T} L\,dt} $$
       <div class="where">퍼센트 플리커(변조 깊이)는 파형 모양을 무시하고 진폭만 본다. 플리커 인덱스는 평균 위로 솟은 면적의 비율이라 듀티를 반영한다. 0/100% 사각파 PWM에서 퍼센트 플리커는 듀티와 상관없이 100%, 플리커 인덱스는 \(1 - D\)다. 어두울수록(듀티가 작을수록) 인덱스가 커진다.</div>
     </div>
-    <p>IEEE 1789-2015는 LED 조명에 대해 주파수별 변조 깊이 권고를 제시한다. <em>저위험</em>: 90 Hz 미만에서 \(\text{Mod}\% &lt; 0.025 f\), 90~1250 Hz에서 \(\text{Mod}\% &lt; 0.08 f\), 1250 Hz 이상은 제한 없음. <em>무영향</em>: 90 Hz 미만 \(0.01 f\), 90~3000 Hz \(0.0333 f\), 3000 Hz 이상 제한 없음. 디스플레이용 규격은 아니지만 업계에서 플리커 평가의 기준선으로 널리 쓴다. 이 기준으로 보면 100% 깊이 PWM은 1250 Hz 이상이어야 저위험, 3000 Hz 이상이어야 무영향 구간에 든다.</p>
+    <p>IEEE 1789-2015는 LED 조명에 대해 주파수별 변조 깊이 권고를 제시한다. <em>저위험</em>: 90 Hz 미만에서 \(\text{Mod}\% &lt; 0.025 f\), 90~1250 Hz에서 \(\text{Mod}\% &lt; 0.08 f\), 1250 Hz 초과는 변조 제한 없음. <em>무영향</em>: 90 Hz 미만 \(0.01 f\), 90~3000 Hz \(0.0333 f\), 3000 Hz 초과는 변조 제한 없음. 디스플레이용 규격은 아니지만 업계에서 플리커 평가의 기준선으로 널리 쓴다. 이 기준으로 보면 100% 깊이 PWM은 1250 Hz 초과에서 저위험 권고의 변조 제한이 없어지고, 3000 Hz 초과에서 무영향 권고의 제한이 없어진다. 이는 조명 권고 구간의 명칭이며 모든 디스플레이 사용자의 증상이 없음을 보장하지 않는다.</p>
 
     <div class="sim" id="sim-pwm">
       <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>PWM 파형, 플리커 지표와 IEEE 1789 위험 영역</h3></div>
@@ -558,7 +558,7 @@
         <div class="stat"><span class="k">IEEE 1789 판정</span><span class="v" id="pw-o3">—</span></div>
         <div class="stat"><span class="k">팬텀 어레이 점 간격</span><span class="v" id="pw-o4">—</span></div>
       </div>
-      <div class="sim-note">위: 실제 광 파형 3주기(점선은 평균). 가운데: IEEE 1789 주파수–변조 깊이 지도(초록 무영향, 주황 저위험, 빨강 그 밖), 점이 현재 설정이다. 아래: 시선이 10° 도약하는 동안 망막에 찍히는 광원 자국. 하이브리드는 밝기 30% 이상에서 DC, 그 아래에서 PWM을 쓰는 방식이다. 해볼 것: 240 Hz·밝기 20%와 2 kHz를 비교하라. 변조 깊이를 30%로 낮추면(완전히 끄지 않는 PWM) 같은 주파수에서도 위험 영역을 벗어난다.</div>
+      <div class="sim-note">위: 실제 광 파형 3주기(점선은 평균). 가운데: IEEE 1789 주파수–변조 깊이 지도(초록 무영향, 주황 저위험, 빨강 그 밖), 점이 현재 설정이다. 아래: 시선이 10° 도약하는 동안 망막에 찍히는 광원 자국. 하이브리드는 밝기 30% 이상에서 DC, 그 아래에서 PWM을 쓰는 방식이다. 해볼 것: 240 Hz·밝기 20%와 2 kHz를 비교하라. 240 Hz 저위험 경계는 19.2%이므로 변조 깊이 30%도 권고를 넘는다. 15%로 낮추면 저위험 구간에 든다. 슬라이더의 변조는 (최대−최소)/(최대+최소)이며, 밝기는 파형의 시간 평균이다.</div>
     </div>
     <div class="callout warn"><strong>광과민성 주의</strong>
       <p>3~30 Hz의 강한 깜빡임, 특히 넓은 면적의 적색 깜빡임은 광과민성 발작을 일으킬 수 있다(방송·게임의 하딩 테스트, WCAG의 "초당 3회 이하" 규칙). 이 페이지의 시뮬레이터는 그래서 실제 깜빡임을 기본으로 보여 주지 않고, 미리보기도 1.5 Hz 이하의 저대비로 제한했다. 고주파 PWM은 의식적으로 보이지 않아도 일부 사람에게 눈의 피로·두통을 유발한다는 보고가 있어, 최근 스마트폰은 저휘도에서도 DC에 가까운 디밍이나 고주파 PWM을 택하는 추세다.</p>
@@ -636,7 +636,7 @@
       <li>흑삽입·스트로브는 MPRT를 \(D\,T_f\)로 줄이지만 휘도가 \(D\)배로 줄고, 플리커와 (LCD에서는) 주사 위치별 크로스토크가 생긴다.</li>
       <li>24p→60 Hz 3:2 풀다운은 50/33 ms 불균일 표시로 저더를 만든다. 24의 배수 주사율은 저더를 없애고, MEMC는 보간으로 저더·블러를 줄이지만 헤일로와 소프 오페라 효과를 낳는다.</li>
       <li>주사 중 버퍼 교체는 티어링, V-Sync는 지연과 60→30 fps 스터터, VRR은 디스플레이가 프레임을 기다려 둘 다 피한다. 범위 아래에서는 LFC가 프레임을 반복한다.</li>
-      <li>PWM 디밍의 플리커는 퍼센트 플리커와 플리커 인덱스(사각파에서 \(1-D\))로 평가하며, IEEE 1789 기준으로 100% 깊이 PWM은 1.25 kHz 이상이어야 저위험이다.</li>
+      <li>PWM 디밍의 플리커는 퍼센트 플리커와 플리커 인덱스(사각파에서 \(1-D\))로 평가하며, IEEE 1789 기준으로 100% 깊이 PWM은 1.25 kHz 초과이면 저위험 권고의 변조 제한이 없다.</li>
       <li>입력 지연 = 폴링 + CPU + GPU + 큐 + 영상 처리 + 스캔아웃(중앙 ½ 프레임) + 화소 응답. TV에서는 영상 처리, 게이밍 환경에서는 프레임 레이트와 동기화가 지배한다.</li>
     </ol>
   </section>
@@ -1190,12 +1190,7 @@
     var sac = DB.range("pw-s", function (v) { return v + " °/s"; }, r);
     var slow = document.getElementById("pw-slow"), prev = document.getElementById("pw-prev");
     function wave() {
-      var b = br() / 100, m = dp() / 100, md = mode();
-      if (md === "dc" || (md === "hyb" && b >= 0.3)) return { hi: b, lo: b, D: 1, pwm: false };
-      var A = md === "hyb" ? 0.3 : 1, D = md === "hyb" ? b / 0.3 : b;
-      // on level A, off level A(1-m); duty D chosen so mean ≈ b
-      D = DB.clamp((b / A - (1 - m)) / m, 0.01, 1);
-      return { hi: A, lo: A * (1 - m), D: D, pwm: true };
+      return DB.pwmWave(br() / 100, dp() / 100, mode());
     }
     function lowRisk(f) { return f < 90 ? 0.025 * f : f <= 1250 ? 0.08 * f : Infinity; }
     function noEff(f) { return f < 90 ? 0.01 * f : f <= 3000 ? 0.0333 * f : Infinity; }
@@ -1249,8 +1244,7 @@
       // readouts
       DB.stat("pw-o1", pct.toFixed(pct < 10 ? 1 : 0) + "<small>%</small>");
       DB.stat("pw-o2", FI.toFixed(3));
-      var v = pct <= Math.max(noEff(f), 0.05) ? "무영향" : pct <= lowRisk(f) ? "저위험" : "권고 초과";
-      if (pct < 0.01) v = "무영향 (변조 없음)";
+      var v = DB.flickerLevel(f, pct);
       DB.stat("pw-o3", v);
       DB.stat("pw-o4", W.pwm ? deg.toFixed(deg < 0.1 ? 3 : 2) + "<small>°" + (deg < 0.15 ? " (이어져 보임)" : "") + "</small>" : "—<small>연속</small>");
       if (!slow.checked) prev.style.opacity = String(0.25 + 0.5 * mu);

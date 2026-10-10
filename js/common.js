@@ -348,6 +348,22 @@
     return { X, P: PX, box, space: uv ? "uv" : "xy" };
   };
 
+  /** Two-level PWM with requested mean brightness and Michelson modulation (0..1). */
+  DB.pwmWave = function (brightness, modulation, mode = "pwm") {
+    const b = DB.clamp(brightness, 0, 1), m = DB.clamp(modulation, 0, 1);
+    if (!b || b === 1 || m === 0 || mode === "dc" || (mode === "hyb" && b >= 0.3)) return { hi: b, lo: b, D: 1, pwm: false };
+    const A = mode === "hyb" ? 0.3 : 1, D = b / A;
+    const ratio = (1 - m) / (1 + m), hi = b / (D + ratio * (1 - D));
+    return { hi, lo: hi * ratio, D, pwm: true };
+  };
+  /** IEEE 1789-2015 RP1/RP2 comparison, applied as a lighting reference. */
+  DB.flickerLevel = function (frequency, modulationPct) {
+    if (modulationPct === 0) return "변조 없음";
+    const low = frequency < 90 ? 0.025 * frequency : frequency <= 1250 ? 0.08 * frequency : Infinity;
+    const noEffect = frequency < 90 ? 0.01 * frequency : frequency <= 3000 ? 0.0333 * frequency : Infinity;
+    return modulationPct < noEffect ? "무영향 권고 구간" : modulationPct < low ? "저위험 권고 구간" : "권고 초과";
+  };
+
   /* ------------------------------------------------------------ theme */
   const themeCbs = [];
   DB.onTheme = (cb) => themeCbs.push(cb);

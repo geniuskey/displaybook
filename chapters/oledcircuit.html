@@ -614,7 +614,7 @@
       <figcaption><b>그림 9-9.</b> PWM과 DC 디밍의 휘도 파형. PWM은 저휘도에서도 픽셀을 고전류 영역에서 쓰므로 3절의 \(2\Delta V_{th}/V_{ov}\) 오차가 작지만 광출력이 깜빡인다. DC는 깜빡임이 없지만 저휘도에서 \(V_{ov}\)가 작아져 잔여 편차가 크게 보인다.</figcaption>
     </figure>
     <p>PWM 깜빡임 자체는 수백 Hz 이상이면 정지 시선에는 보이지 않지만, 눈을 움직일 때 밝은 점이 여러 개로 끊겨 보이는 팬텀 어레이 효과와 민감한 사람의 피로를 일으킬 수 있다. 시간 응답과 플리커의 지각은 <a href="motion.html">11장</a>에서 자세히 다룬다. 실제 스마트폰은 밝은 영역은 DC로, 일정 휘도 아래는 PWM으로 넘기는 <b>하이브리드</b> 방식을 많이 쓰고, 최근에는 PWM 주파수를 1–4 kHz 이상으로 올리는 추세다.</p>
-    <div class="formula">$$M=\frac{L_{\max}-L_{\min}}{L_{\max}+L_{\min}}\times100\%,\qquad \text{IEEE 1789 저위험: } M<0.08\,f\ (f<1250\,\text{Hz}),\ \ f>3\,\text{kHz 면 면제}$$<div class="where">\(M\)은 변조 깊이, \(f\)는 플리커 주파수(Hz). 완전 소등형 PWM은 \(M=100\%\)이므로 1250 Hz 미만에서는 저위험 기준을 넘는다.</div></div>
+    <div class="formula">$$M=\frac{L_{\max}-L_{\min}}{L_{\max}+L_{\min}}\times100\%,\qquad \text{IEEE 1789 저위험: } M<0.025f\;(f<90\,\text{Hz}),\quad M<0.08f\;(90\le f\le1250\,\text{Hz})$$<div class="where">\(M\)은 변조 깊이, \(f\)는 플리커 주파수(Hz). 1250 Hz 초과에는 저위험 권고의 변조 제한이 없고, 무영향 권고는 90 Hz 미만 M&lt;0.01f, 90~3000 Hz M&lt;0.0333f이며 3000 Hz 초과에는 제한이 없다. 완전 소등형 PWM은 M=100%다. LED 일반 조명용 권고를 참고하는 것이며 디스플레이가 특정 주파수에서 규정상 면제되거나 모든 사람에게 증상이 없음을 뜻하지 않는다.</div></div>
     <div class="sim" id="sim-dim">
       <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>PWM / DC / 하이브리드 디밍 비교</h3></div>
       <div class="sim-body side">
@@ -1269,10 +1269,7 @@
       ctx.strokeStyle = P.border; ctx.strokeRect(ix, iy, iw, ih);
       label(ctx, "중간 계조 무라 (V_ov = " + (vov * 1000).toFixed(0) + " mV)", ix, iy + ih + 16, P.dim, 11);
       const M = s.D < 1 ? 1 : 0;
-      let verdict;
-      if (!M) verdict = "플리커 없음";
-      else if (s.f > 3000) verdict = "면제 (>3 kHz)";
-      else verdict = M * 100 < 0.08 * s.f ? "저위험" : "기준 초과 (M=100%)";
+      const verdict = DB.flickerLevel(s.f, M * 100);
       DB.stat("dm-o-i", pct(s.rr));
       DB.stat("dm-o-d", pct(s.D));
       DB.stat("dm-o-m", pct(sd, 2));
